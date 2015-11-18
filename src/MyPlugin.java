@@ -4,11 +4,12 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.swing.text.html.parser.Entity;
 
 
 public class MyPlugin extends JavaPlugin{
@@ -73,8 +74,11 @@ public class MyPlugin extends JavaPlugin{
 
             Player player = (Player) sender;
             World world = player.getWorld();
-            //world.spawnEntity(player.getLocation(), new EntityType();
-
+            Horse skelly = (Horse) world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.HORSE);
+            Entity skellyRider = world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.SKELETON);
+            skelly.setVariant(Horse.Variant.SKELETON_HORSE);
+            skelly.setPassenger(skellyRider);
+            skelly.setTamed(true);
             return true;
         }else {
             if (label.equalsIgnoreCase("walkingSpeed")) {
