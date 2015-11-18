@@ -1,5 +1,4 @@
 *.iml
 out/
 .idea/
-resources/
 .src/*.class

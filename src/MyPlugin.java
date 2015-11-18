@@ -7,14 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.xml.bind.Marshaller;
 
 
 public class MyPlugin extends JavaPlugin{
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new GameListener(), this);
     }
-    public static boolean ENABLE_BLOCK_PLACING = true;
 
     @Override
     public boolean onCommand(CommandSender sender,
@@ -68,11 +66,6 @@ public class MyPlugin extends JavaPlugin{
 
 
             return true;
-
-        }else if(label.equalsIgnoreCase("toggleblockplacing")){
-
-                ENABLE_BLOCK_PLACING = !ENABLE_BLOCK_PLACING;
-                return true;
 
         }else {
             if (label.equalsIgnoreCase("walkingSpeed")) {
