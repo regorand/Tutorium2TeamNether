@@ -5,13 +5,13 @@ version: 1.0
 main: MyPlugin
 
 commands:
-    bauBlock:
-        description: baut einen Block
-    flyingSpeed:
-        description: sets flying Speed
-    walkingSpeed:
-        description: sets walking speed
-    testYaw:
-        description: test the yaw
-    toggleblockplacing
-        description: toggles block placing behind you
+  bauBlock:
+    description: baut einen Block
+  flyingSpeed:
+    description: sets flying Speed
+  walkingSpeed:
+    description: sets walking speed
+  testYaw:
+    description: test the yaw
+  toggleblockplacing
+    description: toggles block placing behind you
