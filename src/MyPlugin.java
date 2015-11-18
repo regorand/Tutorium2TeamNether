@@ -4,9 +4,11 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.swing.text.html.parser.Entity;
 
 
 public class MyPlugin extends JavaPlugin{
@@ -67,6 +69,13 @@ public class MyPlugin extends JavaPlugin{
 
             return true;
 
+        }else if (label.equalsIgnoreCase("spawnSkeletonHorse")){
+
+            Player player = (Player) sender;
+            World world = player.getWorld();
+            //world.spawnEntity(player.getLocation(), new EntityType();
+
+            return true;
         }else {
             if (label.equalsIgnoreCase("walkingSpeed")) {
 

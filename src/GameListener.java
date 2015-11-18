@@ -41,8 +41,8 @@ public class GameListener implements Listener {
         if (block.getType().isSolid()) {
             //block.setType(Material.DIAMOND_BLOCK);
 
-            block.setType(Material.NETHERRACK);
-            block.getLocation().add(0, 1, 0).getBlock().setType(Material.FIRE);
+            //block.setType(Material.NETHERRACK);
+            //block.getLocation().add(0, 1, 0).getBlock().setType(Material.FIRE);
 
         }
     }
