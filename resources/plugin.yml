@@ -13,5 +13,5 @@ commands:
     description: sets walking speed
   testYaw:
     description: test the yaw
-  toggleblockplacing
+  toggleblockplacing:
     description: toggles block placing behind you
