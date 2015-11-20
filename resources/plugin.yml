@@ -15,3 +15,5 @@ commands:
     description: test the yaw
   spawnSkeletonHorse:
     description: spawns a Skeleton Horse
+  test:
+    description: test

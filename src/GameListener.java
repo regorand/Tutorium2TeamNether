@@ -18,49 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 public class GameListener implements Listener {
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
-        event.getPlayer().getInventory().addItem(new ItemStack(event.getBlock().getType(), 1));
-        event.getPlayer().getInventory().addItem(new ItemStack(Material.TORCH, 1));
-    }
 
-    @EventHandler
-    public void onProjectileHit(ProjectileHitEvent event) {
-        if (event.getEntity() instanceof Egg) {
-            event.getEntity().getWorld().createExplosion(event.getEntity().getLocation(), (float) 10.0);
-        }
-    }
-
-    @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event) {
-        float rotation = Math.abs(event.getPlayer().getLocation().getYaw());
-        Block block = event.getPlayer().getLocation().getBlock().getRelative(BlockFace.DOWN);
-
-        block = relativeToPlayer(2, true, rotation, block);
-
-        if (block.getType().isSolid()) {
-            //block.setType(Material.DIAMOND_BLOCK);
-
-            //block.setType(Material.NETHERRACK);
-            //block.getLocation().add(0, 1, 0).getBlock().setType(Material.FIRE);
-
-        }
-    }
-    @EventHandler
-    public void onInteract(PlayerInteractEvent event){
-        if(event.getAction() == Action.RIGHT_CLICK_BLOCK){
-            if(event.getPlayer().getInventory().getItemInHand().getType().equals(Material.STICK)){
-                event.getPlayer().getWorld().strikeLightning(event.getPlayer().getTargetBlock((Set<Material>) null, 200).getLocation());
-            }
-
-        }
-    }
-
-
-
-
-
-
+    
 
     public Block relativeToPlayer(final int distance, final boolean behind, final float yaw, final Block block){
         float rotation = Math.abs(yaw);

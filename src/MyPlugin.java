@@ -1,3 +1,4 @@
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -23,114 +24,131 @@ public class MyPlugin extends JavaPlugin{
                              String label,
                              String[] args) {
 
-        if(label.equalsIgnoreCase("testYaw")){
-
-            Player player = (Player) sender;
-            Block block = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
-            block.setType(Material.DIAMOND_BLOCK);
-            sender.sendMessage(String.valueOf(block.getLocation().getX()));
-            block = block.getWorld().getBlockAt(block.getLocation().add(1, 0, 0));
-
-            sender.sendMessage(String.valueOf(block.getLocation().getX()));
-            block.setType(Material.GOLD_BLOCK);
-
+        boolean commandByPlayer = false;
+        Player player = null;
+        World world = null;
+        if(sender instanceof Player){
+            player = (Player) sender;
+            world = player.getWorld();
+            commandByPlayer = true;
         }
 
-
-        if (label.equalsIgnoreCase("bauBlock")) {
-
-            if (sender instanceof Player) {
-                if (args.length > 0) {
-                    bauBlock((Player) sender, Integer.valueOf(args[0]));
-                } else {
-                    bauBlock((Player) sender, 1);
+        switch (label.toLowerCase()){
+            case "testyaw":
+                if(!commandByPlayer){
+                    Bukkit.broadcastMessage("Dieser Befehl ist leider nicht von der Konsole verfügar");
+                    return true;
                 }
 
-            } else {
-                sender.sendMessage("dieser Befehl ist nicht aus der Konsole verfügbar");
-            }
+                    Block block = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+                block.setType(Material.DIAMOND_BLOCK);
+                sender.sendMessage(String.valueOf(block.getLocation().getX()));
+                block = block.getWorld().getBlockAt(block.getLocation().add(1, 0, 0));
 
+                sender.sendMessage(String.valueOf(block.getLocation().getX()));
+                block.setType(Material.GOLD_BLOCK);
+                return true;
 
-            return true;
+            case "baublock":
+                if(!commandByPlayer){
+                    Bukkit.broadcastMessage("Dieser Befehl ist leider nicht von der Konsole verfügar");
+                    return true;
+                }
 
-        } else if (label.equalsIgnoreCase("flyingSpeed")) {
-
-            if (sender instanceof Player) {
                 if (args.length > 0) {
-                    setPlayerSpeed((Player) sender, Float.valueOf(args[0]), "flying");
+                    Commands.bauBlock(player, world, args);
                 } else {
-                    setPlayerSpeed((Player) sender, 1, "flying");
+                    String[] sizeOne = {"1"};
+                    Commands.bauBlock(player, world, sizeOne);
+                }
+                return true;
+
+            case "test":
+                Bukkit.broadcastMessage("success");
+                return true;
+
+            case "flyingspeed":
+                if(!commandByPlayer){
+                    Bukkit.broadcastMessage("Dieser Befehl ist leider nicht von der Konsole verfügar");
+                    return true;
+                }
+
+                if (args.length > 0) {
+                    Commands.setPlayerSpeed((Player) sender, Float.valueOf(args[0]), "flying");
+                } else {
+                    Commands.setPlayerSpeed((Player) sender, 1, "flying");
                 }
                 sender.sendMessage("success");
 
-            } else {
-                sender.sendMessage("dieser Befehl ist nicht aus der Konsole verfügbar");
-            }
-
-
-            return true;
-
-        }else if (label.equalsIgnoreCase("spawnSkeletonHorse")){
-
-            Player player = (Player) sender;
-            World world = player.getWorld();
-            Horse skelly = (Horse) world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.HORSE);
-            Entity skellyRider = world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.SKELETON);
-            skelly.setVariant(Horse.Variant.SKELETON_HORSE);
-            skelly.setPassenger(skellyRider);
-            skelly.setTamed(true);
-            return true;
-        }else {
-            if (label.equalsIgnoreCase("walkingSpeed")) {
-
-                if (sender instanceof Player) {
-
-                    if (args.length > 0) {
-                        setPlayerSpeed((Player) sender, Float.valueOf(args[0]), "walking");
-                    } else {
-                        setPlayerSpeed((Player) sender, 1, "walking");
-                    }
-                    sender.sendMessage("success");
-                } else {
-                    sender.sendMessage("dieser Befehl ist nicht aus der Konsole verfügbar");
-                }
-
                 return true;
-            } else {
+
+
+            case "walkingspeed":
+                if(!commandByPlayer){
+                    Bukkit.broadcastMessage("Dieser Befehl ist leider nicht von der Konsole verfügar");
+                    return true;
+                }
+
+                if (args.length > 0) {
+                    Commands.setPlayerSpeed(player, Float.valueOf(args[0]), "walking");
+                } else {
+                    Commands.setPlayerSpeed(player, 1, "walking");
+                }
+                sender.sendMessage("success");
+                return true;
+
+            case "spawnskeletonsorse":
+                Horse skelly = (Horse) world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.HORSE);
+                Entity skellyRider = world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.SKELETON);
+                skelly.setVariant(Horse.Variant.SKELETON_HORSE);
+                skelly.setPassenger(skellyRider);
+                skelly.setTamed(true);
+                return true;
+
+            default:
                 return false;
-            }
         }
     }
 
-    void bauBlock(final Player player, int cubeSize) {
-        World world = player.getWorld();
 
-        int xPos = player.getLocation().getBlockX();
-        int yPos = player.getLocation().getBlockY();
-        int zPos = player.getLocation().getBlockZ();
 
-        player.chat("10/10");
 
-        Block blockToChange;
 
-        for (int i = 0; i < cubeSize; i++) {
-            for (int j = 0; j < cubeSize; j++) {
-                for (int k = 0; k < cubeSize; k++) {
-                    blockToChange = world.getBlockAt(xPos + 3 + i, yPos + 3 + j, zPos + 3 + k);
-                    blockToChange.setType(Material.STONE);
+    public static class Commands{
+
+        public static void bauBlock(Player player, World world, String[] args){
+            int sizeX, sizeY, sizeZ, amountArgs = args.length;
+
+            sizeX = Integer.valueOf(args[0]);
+            sizeY = amountArgs > 1 ? Integer.valueOf(args[1]) : sizeX;
+            sizeZ = amountArgs > 2 ? Integer.valueOf(args[2]) : sizeX;
+
+            int xPos = player.getLocation().getBlockX();
+            int yPos = player.getLocation().getBlockY();
+            int zPos = player.getLocation().getBlockZ();
+
+            Block blockToChange;
+
+            for (int i = 0; i < sizeX; i++) {
+                for (int j = 0; j < sizeY; j++) {
+                    for (int k = 0; k < sizeZ; k++) {
+                        blockToChange = world.getBlockAt(xPos + 3 + i, yPos + 3 + j, zPos + 3 + k);
+                        blockToChange.setType(Material.STONE);
+                    }
                 }
             }
-        }
-    }
 
-    void setPlayerSpeed(Player player, float speed, String mode) {
-        if (mode.equalsIgnoreCase("flying")) {
-            player.setFlySpeed(speed * (float) 0.2);
-        } else if (mode.equalsIgnoreCase("walking")) {
-            player.setWalkSpeed(speed * (float) 0.2);
         }
 
+        public static void setPlayerSpeed(Player player, float speed, String mode) {
+            if (mode.equalsIgnoreCase("flying")) {
+                player.setFlySpeed(speed * (float) 0.2);
+            } else if (mode.equalsIgnoreCase("walking")) {
+                player.setWalkSpeed(speed * (float) 0.2);
+            }
+
+        }
+
+
     }
-
-
 }
