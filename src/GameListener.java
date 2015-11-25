@@ -8,6 +8,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Door;
@@ -19,7 +20,11 @@ import java.util.Set;
 
 public class GameListener implements Listener {
 
-    
+
+    public void onPlayerJoin(PlayerJoinEvent event){
+
+    }
+
 
     public Block relativeToPlayer(final int distance, final boolean behind, final float yaw, final Block block){
         float rotation = Math.abs(yaw);
