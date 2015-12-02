@@ -2,7 +2,7 @@ name: JavaWorkshop
 
 version: 1.0
 
-main: MyPlugin
+main: main.MyPlugin
 
 commands:
   bauBlock:
@@ -17,3 +17,5 @@ commands:
     description: spawns a Skeleton Horse
   test:
     description: test
+  toggleblockbreak:
+    description: toggles Block break

@@ -1,32 +1,24 @@
-import org.bukkit.Material;
+package resources;
+
+
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Egg;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.Door;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+public class Utilities {
 
-public class GameListener implements Listener {
+    private static boolean activateBlockBreakCancel = false;
 
+    public static void toggleBlockBreak() {
+        activateBlockBreakCancel = !activateBlockBreakCancel;
+    }
 
-    public void onPlayerJoin(PlayerJoinEvent event){
-
+    public static boolean isActivateBlockBreakCancel() {
+        return activateBlockBreakCancel;
     }
 
 
-    public Block relativeToPlayer(final int distance, final boolean behind, final float yaw, final Block block){
+
+
+    public static Block relativeToPlayer(final int distance, final boolean behind, final float yaw, final Block block){
         float rotation = Math.abs(yaw);
 
         Block returnBlock = block;

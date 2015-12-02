@@ -1,24 +1,21 @@
 package commands;
 
-import org.bukkit.Bukkit;
+import main.MyPlugin;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
+import org.bukkit.util.Vector;
+import resources.Utilities;
 
 /**
  * Created by jan-luca on 25.11.15.
  */
 public class WorldCommandExecuter implements CommandExecutor {
-
-
-
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -26,7 +23,7 @@ public class WorldCommandExecuter implements CommandExecutor {
         Player player = (Player) sender;
         World world = player.getWorld();
 
-        switch (label){
+        switch (label) {
             case "baublock":
                 String[] dimensions = {"1"};
 
@@ -76,13 +73,38 @@ public class WorldCommandExecuter implements CommandExecutor {
 
                 return true;
             case "spawnskeletonhorse":
+                /*
                 Horse skelly = (Horse) world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.HORSE);
                 Entity skellyRider = world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.SKELETON);
                 skelly.setVariant(Horse.Variant.SKELETON_HORSE);
                 skelly.setPassenger(skellyRider);
                 skelly.setTamed(true);
+
+
+Horse horse = (Horse) world.spawnEntity(player.getLocation(), EntityType.HORSE);
+                Wolf wolfy = (Wolf) world.spawnEntity(player.getLocation(), EntityType.WOLF);
+                Ocelot ocy = (Ocelot) world.spawnEntity(player.getLocation(), EntityType.OCELOT);
+                Chicken chicken = (Chicken) world.spawnEntity(player.getLocation(), EntityType.CHICKEN);
+
+                horse.setTamed(true);
+                ocy.setTamed(true);
+
+                horse.setPassenger(wolfy);
+                wolfy.setPassenger(ocy);
+                ocy.setPassenger(chicken);
+
+
+                */
+
+                Bat bat = (Bat) world.spawnEntity(player.getLocation().add(0, 100D, 0), EntityType.BAT);
+                bat.setPassenger(player);
+
+
                 return true;
 
+            case "toggleblockbreak":
+                Utilities.toggleBlockBreak();
+                return true;
             default:
                 return false;
         }
