@@ -12,9 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Created by jan-luca on 02.12.15.
- */
+
 public class PlayerListener implements Listener {
 
     @EventHandler
