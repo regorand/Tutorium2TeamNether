@@ -22,10 +22,8 @@ public class PlayerServerEvent implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        ItemStack diaStack = new ItemStack(Material.DIAMOND, 64);
-        player.getInventory().addItem(diaStack);
-        Bukkit.broadcastMessage("test");
+        if(!player.getInventory().contains(Material.DIAMOND)){
+            player.getInventory().addItem(new ItemStack(Material.DIAMOND, 64));
+        }
     }
-
-
 }

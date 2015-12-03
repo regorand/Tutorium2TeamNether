@@ -1,6 +1,7 @@
 package commands;
 
 import main.MyPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -81,7 +82,7 @@ public class WorldCommandExecuter implements CommandExecutor {
                 skelly.setTamed(true);
 
 
-Horse horse = (Horse) world.spawnEntity(player.getLocation(), EntityType.HORSE);
+                Horse horse = (Horse) world.spawnEntity(player.getLocation(), EntityType.HORSE);
                 Wolf wolfy = (Wolf) world.spawnEntity(player.getLocation(), EntityType.WOLF);
                 Ocelot ocy = (Ocelot) world.spawnEntity(player.getLocation(), EntityType.OCELOT);
                 Chicken chicken = (Chicken) world.spawnEntity(player.getLocation(), EntityType.CHICKEN);
@@ -96,7 +97,7 @@ Horse horse = (Horse) world.spawnEntity(player.getLocation(), EntityType.HORSE);
 
                 */
 
-                Bat bat = (Bat) world.spawnEntity(player.getLocation().add(0, 100D, 0), EntityType.BAT);
+                Bat bat = (Bat) world.spawnEntity(player.getLocation().add(0, 0, 0), EntityType.BAT);
                 bat.setPassenger(player);
 
 
@@ -104,6 +105,7 @@ Horse horse = (Horse) world.spawnEntity(player.getLocation(), EntityType.HORSE);
 
             case "toggleblockbreak":
                 Utilities.toggleBlockBreak();
+                Bukkit.broadcastMessage("Block Breaking jetzt auf " + !Utilities.isActivateBlockBreakCancel());
                 return true;
             default:
                 return false;
