@@ -1,7 +1,7 @@
 package game;
 
-/**
- * Created by jan-luca on 03.12.15.
- */
+
 public class Shop {
+    //Shop um sachen zu kaufen
+    //Könnte Instanziiert werden, wenn es mehrer verschiedene Shops geben soll
 }

@@ -6,7 +6,7 @@ import org.bukkit.block.Block;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Utilities {
+public abstract class Utilities {
 
     private static boolean activateBlockBreakCancel = false;
 
@@ -25,7 +25,6 @@ public class Utilities {
             destroyableBlocks.remove(destroyableBlocks.indexOf(block));
         }
     }
-
 
 
     public static void toggleBlockBreak() {

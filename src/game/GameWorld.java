@@ -1,7 +1,7 @@
 package game;
 
-/**
- * Created by jan-luca on 03.12.15.
- */
+
 public class GameWorld {
+    //stellt das Spielfeld dar.
+    //Sollte vermmutlich Instanziiert werden, da die Welt jedes Spiel wechselnd ist
 }

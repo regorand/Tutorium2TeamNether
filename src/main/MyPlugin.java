@@ -19,6 +19,5 @@ public class MyPlugin extends JavaPlugin {
         getCommand("walkingspeed").setExecutor(worldCommandExecuter);
         getCommand("spawnskeletonhorse").setExecutor(worldCommandExecuter);
         getCommand("toggleblockbreak").setExecutor(worldCommandExecuter);
-
     }
 }
