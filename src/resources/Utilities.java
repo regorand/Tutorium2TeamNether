@@ -8,6 +8,7 @@ import java.util.List;
 
 public abstract class Utilities {
 
+
     private static boolean activateBlockBreakCancel = false;
 
     private static List<Block> destroyableBlocks = new ArrayList<Block>();
@@ -25,7 +26,6 @@ public abstract class Utilities {
             destroyableBlocks.remove(destroyableBlocks.indexOf(block));
         }
     }
-
 
     public static void toggleBlockBreak() {
         activateBlockBreakCancel = !activateBlockBreakCancel;

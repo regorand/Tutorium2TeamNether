@@ -19,3 +19,5 @@ commands:
     description: test
   toggleblockbreak:
     description: toggles Block break
+  labyrinth:
+    description: builds labyrinth

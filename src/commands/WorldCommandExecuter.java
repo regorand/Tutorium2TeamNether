@@ -12,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 import resources.Utilities;
+import resources.WorldBuilding;
 
 /**
  * Created by jan-luca on 25.11.15.
@@ -106,6 +107,17 @@ public class WorldCommandExecuter implements CommandExecutor {
             case "toggleblockbreak":
                 Utilities.toggleBlockBreak();
                 Bukkit.broadcastMessage("Block Breaking jetzt auf " + !Utilities.isActivateBlockBreakCancel());
+                return true;
+
+            case "labyrinth":
+                if (args.length > 0) {
+                    if(!(WorldBuilding.baueArena(player, world, args))){
+                        Bukkit.broadcastMessage("Fehler");
+                    }
+                } else {
+                    Bukkit.broadcastMessage("Fehler");
+
+                }
                 return true;
             default:
                 return false;

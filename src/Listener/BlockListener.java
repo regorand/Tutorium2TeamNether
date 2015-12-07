@@ -10,7 +10,7 @@ import resources.Utilities;
 public class BlockListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if(Utilities.isActivateBlockBreakCancel()&& !Utilities.isDestroyable(event.getBlock())){
+        if(Utilities.isActivateBlockBreakCancel() && !Utilities.isDestroyable(event.getBlock())){
             //
             event.setCancelled(true);
         }else{
