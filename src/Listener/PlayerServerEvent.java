@@ -14,9 +14,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import resources.Utilities;
 
-/**
- * Created by jan-luca on 25.11.15.
- */
+
 public class PlayerServerEvent implements Listener {
 
     @EventHandler

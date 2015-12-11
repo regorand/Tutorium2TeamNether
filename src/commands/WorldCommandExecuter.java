@@ -75,31 +75,12 @@ public class WorldCommandExecuter implements CommandExecutor {
 
                 return true;
             case "spawnskeletonhorse":
-                /*
+
                 Horse skelly = (Horse) world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.HORSE);
                 Entity skellyRider = world.spawnEntity(player.getLocation().add(1, 0, 1), EntityType.SKELETON);
                 skelly.setVariant(Horse.Variant.SKELETON_HORSE);
                 skelly.setPassenger(skellyRider);
                 skelly.setTamed(true);
-
-
-                Horse horse = (Horse) world.spawnEntity(player.getLocation(), EntityType.HORSE);
-                Wolf wolfy = (Wolf) world.spawnEntity(player.getLocation(), EntityType.WOLF);
-                Ocelot ocy = (Ocelot) world.spawnEntity(player.getLocation(), EntityType.OCELOT);
-                Chicken chicken = (Chicken) world.spawnEntity(player.getLocation(), EntityType.CHICKEN);
-
-                horse.setTamed(true);
-                ocy.setTamed(true);
-
-                horse.setPassenger(wolfy);
-                wolfy.setPassenger(ocy);
-                ocy.setPassenger(chicken);
-
-
-                */
-
-                Bat bat = (Bat) world.spawnEntity(player.getLocation().add(0, 0, 0), EntityType.BAT);
-                bat.setPassenger(player);
 
 
                 return true;
@@ -110,6 +91,8 @@ public class WorldCommandExecuter implements CommandExecutor {
                 return true;
 
             case "labyrinth":
+                Bukkit.broadcastMessage("funktioniert nicht mehr");
+                /*
                 if (args.length > 0) {
                     if(!(WorldBuilding.baueArena(player, world, args))){
                         Bukkit.broadcastMessage("Fehler");
@@ -118,7 +101,11 @@ public class WorldCommandExecuter implements CommandExecutor {
                     Bukkit.broadcastMessage("Fehler");
 
                 }
+                */
                 return true;
+            case "test":
+                //test command für alles mögliche
+
             default:
                 return false;
         }

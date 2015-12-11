@@ -1,13 +1,19 @@
 package resources;
 
 
+import game.Game;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EnderDragon;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Utilities {
 
+    private static JavaPlugin plugin;
+
+    public static Game currentGame;
 
     private static boolean activateBlockBreakCancel = false;
 
@@ -67,5 +73,16 @@ public abstract class Utilities {
             }
         }
         return returnBlock;
+    }
+
+
+    //getter und setter
+
+    static public JavaPlugin getPlugin(){
+        return plugin;
+    }
+
+    static public void setPlugin(JavaPlugin pluginInstance){
+        plugin = pluginInstance;
     }
 }

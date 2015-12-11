@@ -21,3 +21,11 @@ commands:
     description: toggles Block break
   labyrinth:
     description: builds labyrinth
+  startnewgame:
+    description: starts new game
+  joingame:
+    description: joins the game that is active on the server
+  endGame:
+    description: ends game on the server prematurely - only available to game creator and thecodx
+  test:
+    description: test command für alles mögliche

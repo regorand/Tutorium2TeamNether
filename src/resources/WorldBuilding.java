@@ -1,5 +1,6 @@
 package resources;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -15,27 +16,22 @@ public class WorldBuilding extends JavaPlugin {
 
 
 
-    public static boolean baueArena(Player player, World world, String[] args){
-        int anzahl;
-        try{
-            anzahl = Integer.valueOf(args[0]);
-        }catch (NumberFormatException e){
-            return false;
-        }
+    public static boolean baueArena(Location loc, World world, int anzahl){
 
-        baueOffenenKastenUmPlayer(player, world);
-        baueOffenenKastenRechtsVomKastenUmPlayer(player, world, anzahl);
-        baueOffenenKastenLinksVomKastenUmPlayer(player, world, anzahl);
-        baueOffenenKastenUEberKastenUmPlayer(player, world, anzahl);
-        baueOffenenKastenUnterKastenUmPlayer(player, world, anzahl);
+
+        baueOffenenKastenUmPlayer(loc, world);
+        baueOffenenKastenRechtsVomKastenUmPlayer(loc, world, anzahl);
+        baueOffenenKastenLinksVomKastenUmPlayer(loc, world, anzahl);
+        baueOffenenKastenUEberKastenUmPlayer(loc, world, anzahl);
+        baueOffenenKastenUnterKastenUmPlayer(loc, world, anzahl);
         return true;
     }
 
-    static void baueOffenenKastenUmPlayer(Player player, World world) {
+    static void baueOffenenKastenUmPlayer(Location loc, World world) {
 
-        int xPositionArena = player.getLocation().getBlockX()-(SIZEOFCUBESTART/2);
-        int yPositionArena = player.getLocation().getBlockY()-2;
-        int zPositionArena = player.getLocation().getBlockZ()-(SIZEOFCUBESTART/2);
+        int xPositionArena = loc.getBlockX()-(SIZEOFCUBESTART/2);
+        int yPositionArena = loc.getBlockY()-2;
+        int zPositionArena = loc.getBlockZ()-(SIZEOFCUBESTART/2);
 
         Block blockPlayerArena;
 
@@ -51,14 +47,14 @@ public class WorldBuilding extends JavaPlugin {
         }
     }
 
-    static void baueOffenenKastenRechtsVomKastenUmPlayer(Player player, World world, int anzahl) {
+    static void baueOffenenKastenRechtsVomKastenUmPlayer(Location loc, World world, int anzahl) {
 
 
         for (int wieOftRechts = 0; wieOftRechts < anzahl; wieOftRechts++) {
             for (int wieOftNachOben = 0; wieOftNachOben < anzahl; wieOftNachOben++) {
-                int xPositionArena = player.getLocation().getBlockX() - (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftNachOben);
-                int yPositionArena = player.getLocation().getBlockY() - 2;
-                int zPositionArena = player.getLocation().getBlockZ() + (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftRechts);
+                int xPositionArena = loc.getBlockX() - (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftNachOben);
+                int yPositionArena = loc.getBlockY() - 2;
+                int zPositionArena = loc.getBlockZ() + (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftRechts);
 
                 Block blockPlayerArena;
 
@@ -76,14 +72,14 @@ public class WorldBuilding extends JavaPlugin {
         }
     }
 
-    static void baueOffenenKastenUEberKastenUmPlayer(Player player, World world, int anzahl) {
+    static void baueOffenenKastenUEberKastenUmPlayer(Location loc, World world, int anzahl) {
 
 
         for (int wieOftRechts = 0; wieOftRechts < anzahl; wieOftRechts++) {
             for (int wieOftOben = 0; wieOftOben < anzahl; wieOftOben++) {
-                int xPositionArena = player.getLocation().getBlockX() + (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftOben);
-                int yPositionArena = player.getLocation().getBlockY() - 2;
-                int zPositionArena = player.getLocation().getBlockZ() + (SIZEOFCUBESTART / 2 - SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftRechts);
+                int xPositionArena = loc.getBlockX() + (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftOben);
+                int yPositionArena = loc.getBlockY() - 2;
+                int zPositionArena = loc.getBlockZ() + (SIZEOFCUBESTART / 2 - SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftRechts);
 
                 Block blockPlayerArena;
 
@@ -101,15 +97,15 @@ public class WorldBuilding extends JavaPlugin {
         }
     }
 
-    static void baueOffenenKastenLinksVomKastenUmPlayer(Player player, World world, int anzahl) {
+    static void baueOffenenKastenLinksVomKastenUmPlayer(Location loc, World world, int anzahl) {
 
 
 
         for (int wieOftRechts = 0; wieOftRechts < anzahl; wieOftRechts++) {
             for (int wieOftOben = 0; wieOftOben < anzahl; wieOftOben++) {
-                int xPositionArena = player.getLocation().getBlockX() + (SIZEOFCUBESTART / 2 - SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftOben);
-                int yPositionArena = player.getLocation().getBlockY() - 2;
-                int zPositionArena = player.getLocation().getBlockZ() - (SIZEOFCUBESTART / 2 + SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftRechts);
+                int xPositionArena = loc.getBlockX() + (SIZEOFCUBESTART / 2 - SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftOben);
+                int yPositionArena = loc.getBlockY() - 2;
+                int zPositionArena = loc.getBlockZ() - (SIZEOFCUBESTART / 2 + SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftRechts);
 
                 Block blockPlayerArena;
 
@@ -127,14 +123,14 @@ public class WorldBuilding extends JavaPlugin {
         }
     }
 
-    static void baueOffenenKastenUnterKastenUmPlayer(Player player, World world, int anzahl) {
+    static void baueOffenenKastenUnterKastenUmPlayer(Location loc, World world, int anzahl) {
 
 
         for (int wieOftRechts = 0; wieOftRechts < anzahl; wieOftRechts++) {
             for (int wieOftOben = 0; wieOftOben < anzahl; wieOftOben++) {
-                int xPositionArena = player.getLocation().getBlockX() - (SIZEOFCUBESTART / 2 + SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftOben);
-                int yPositionArena = player.getLocation().getBlockY() - 2;
-                int zPositionArena = player.getLocation().getBlockZ() - (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftRechts);
+                int xPositionArena = loc.getBlockX() - (SIZEOFCUBESTART / 2 + SIZEOFCUBESMALL) - (SIZEOFCUBESMALL * wieOftOben);
+                int yPositionArena = loc.getBlockY() - 2;
+                int zPositionArena = loc.getBlockZ() - (SIZEOFCUBESTART / 2) + (SIZEOFCUBESMALL * wieOftRechts);
 
                 Block blockPlayerArena;
 
