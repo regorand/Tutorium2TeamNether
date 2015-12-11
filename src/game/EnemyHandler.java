@@ -1,22 +1,23 @@
 package game;
 
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class EnemyHandler {
 
-    private EntityType[] ENEMIES = {EntityType.ZOMBIE};
-    private int NUMBER_ENEMY_TYPES = ENEMIES.length;
-    private int MAX_ENEMIES = 1;
+    private EntityType[] ENEMIE_TYPES = {EntityType.ZOMBIE, EntityType.SKELETON, EntityType.SPIDER};
+    private int NUMBER_ENEMY_TYPES = ENEMIE_TYPES.length;
+    private int MAX_ENEMIES = 10;
 
     public EnemyHandler(GameWorld gameWorld){
-
-
+        this.gameWorld = gameWorld;
         enemies = new ArrayList<>();
     }
 
@@ -36,13 +37,14 @@ public class EnemyHandler {
         if(enemies.size() >= MAX_ENEMIES){
             return;
         }
-        spawnEnemy(gameWorld.getLocInside());
+        Location loc = gameWorld.getLocInside();
+        Bukkit.broadcastMessage("shouldUpdate");
+        spawnEnemy(loc);
     }
 
-    public void spawnEnemy(Location loc){
-        //Random r = new Random();
-        //world.spawnEntity(loc, ENEMIES[r.nextInt(NUMBER_ENEMY_TYPES)]);
-        gameWorld.world.spawnEntity(loc, EntityType.ZOMBIE);
+    private void spawnEnemy(Location loc){
+        Random r = new Random();
+        enemies.add(gameWorld.world.spawnEntity(loc, ENEMIE_TYPES[r.nextInt(NUMBER_ENEMY_TYPES)]));
     }
 
     public boolean isAllowedEnemy(EntityType type){

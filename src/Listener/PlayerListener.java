@@ -1,9 +1,11 @@
 package Listener;
 
-import javafx.scene.paint.Material;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +17,11 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import resources.Utilities;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 
 public class PlayerListener implements Listener {
 
@@ -24,9 +31,10 @@ public class PlayerListener implements Listener {
             Player player = event.getPlayer();
             World world = player.getWorld();
             if(player.getItemInHand().equals(new ItemStack(org.bukkit.Material.STICK, 1))){
-                Location playerLoc = player.getEyeLocation().add(1, 0, 1);
-                Fireball fBall = (Fireball) world.spawnEntity(playerLoc, EntityType.FIREBALL);
-                fBall.setVelocity(playerLoc.getDirection().multiply(5));
+                Set<Material> airSet = new HashSet<>();
+                airSet.add(Material.AIR);
+                Block blockInSight = player.getTargetBlock(airSet, 255);
+                world.strikeLightning(blockInSight.getLocation());
             }
         }
     }

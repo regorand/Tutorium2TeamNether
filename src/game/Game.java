@@ -19,13 +19,14 @@ public class Game {
     private int scheduler;
 
     public Game (Player creator, World world, int ArenaSize){
-        players = new ArrayList<>();
-        enemyHandler = new EnemyHandler(gameWorld);
-        gameWorld = new GameWorld(creator.getLocation(), world, ArenaSize);
         this.creator = creator;
+        players = new ArrayList<>();
+        gameWorld = new GameWorld(creator.getLocation(), world, ArenaSize);
+        enemyHandler = new EnemyHandler(gameWorld);
         addPlayerToGame(creator);
         scheduler =  Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Utilities.getPlugin(), new Runnable() {
             public void run() {
+                Bukkit.broadcastMessage("test");
                 enemyHandler.updateEnemies();
             }
         }, 100, 10);
