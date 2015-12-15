@@ -38,7 +38,6 @@ public class EnemyHandler {
             return;
         }
         Location loc = gameWorld.getLocInside();
-        Bukkit.broadcastMessage("shouldUpdate");
         spawnEnemy(loc);
     }
 

@@ -26,7 +26,6 @@ public class Game {
         addPlayerToGame(creator);
         scheduler =  Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Utilities.getPlugin(), new Runnable() {
             public void run() {
-                Bukkit.broadcastMessage("test");
                 enemyHandler.updateEnemies();
             }
         }, 100, 10);
